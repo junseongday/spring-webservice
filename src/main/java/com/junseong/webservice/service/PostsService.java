@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
-public class PostService {
+public class PostsService {
     private PostsRepository postsRepository;
 
     @Transactional

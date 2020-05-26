@@ -14,26 +14,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @SpringBootTest
-class PostRepositoryTest {
+class PostsRepositoryTest {
 
     @Autowired
-    PostRepository postRepository;
+    PostsRepository postsRepository;
 
     @AfterEach
     public void cleanup() {
-        postRepository.deleteAll();
+        postsRepository.deleteAll();
     }
 
     @Test
     public void 게시글저장_불러오기() {
         //given
-        postRepository.save(Posts.builder()
+        postsRepository.save(Posts.builder()
                 .title("테스트 게시글")
                 .content("테스트 본문")
                 .author("junseongday@gmail.com")
                 .build());
         //when
-        final List<Posts> postsList = postRepository.findAll();
+        final List<Posts> postsList = postsRepository.findAll();
 
         //then
         Posts posts = postsList.get(0);
@@ -46,13 +46,13 @@ class PostRepositoryTest {
     public void BaseTimeEntity_등록() {
         // given
         final LocalDateTime now = LocalDateTime.now();
-        postRepository.save(Posts.builder()
+        postsRepository.save(Posts.builder()
         .title("test title")
         .content("test content")
         .author("test author")
         .build());
         //when
-        final List<Posts> postsList = postRepository.findAll();
+        final List<Posts> postsList = postsRepository.findAll();
         final Posts posts = postsList.get(0);
         assertTrue(posts.getCreatedDate().isAfter(now));
         assertTrue(posts.getModifiedDate().isAfter(now));

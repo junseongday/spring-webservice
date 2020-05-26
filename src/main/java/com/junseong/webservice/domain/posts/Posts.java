@@ -1,21 +1,19 @@
 package com.junseong.webservice.domain.posts;
 
+import com.junseong.webservice.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Posts extends BaseTimeEntity{
+public class Posts extends BaseTimeEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 500, nullable= false)

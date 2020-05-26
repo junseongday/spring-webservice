@@ -1,6 +1,7 @@
 package com.junseong.webservice.web;
 
-import com.junseong.webservice.domain.posts.PostRepository;
+import com.junseong.webservice.dto.posts.PostsSaveRequestDto;
+import com.junseong.webservice.service.PostsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class WebRestController {
 
-    private PostRepository postRepository;
+    private PostsService postsService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -16,7 +17,7 @@ public class WebRestController {
     }
 
     @PostMapping("/posts")
-    public void savePosts(@RequestBody PostsSaveRequestDto dto) {
-        postRepository.save(dto.toEntity());
+    public Long savePosts(@RequestBody PostsSaveRequestDto dto) {
+        return postsService.save(dto);
     }
 }

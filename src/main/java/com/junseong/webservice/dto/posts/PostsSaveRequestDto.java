@@ -1,4 +1,4 @@
-package com.junseong.webservice.web;
+package com.junseong.webservice.dto.posts;
 
 import com.junseong.webservice.domain.posts.Posts;
 import lombok.Builder;

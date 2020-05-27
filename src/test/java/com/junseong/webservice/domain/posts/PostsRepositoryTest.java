@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,14 +47,14 @@ class PostsRepositoryTest {
     public void BaseTimeEntity_등록() {
         // given
         final LocalDateTime now = LocalDateTime.now();
-        postsRepository.save(Posts.builder()
-        .title("test title")
-        .content("test content")
-        .author("test author")
-        .build());
+        final Posts save = postsRepository.save(Posts.builder()
+                .title("test title")
+                .content("test content")
+                .author("test author")
+                .build());
         //when
-        final List<Posts> postsList = postsRepository.findAll();
-        final Posts posts = postsList.get(0);
+        final List<Posts> byId = postsRepository.findAllById(Collections.singleton(save.getId()));
+        final Posts posts = byId.get(0);
         assertTrue(posts.getCreatedDate().isAfter(now));
         assertTrue(posts.getModifiedDate().isAfter(now));
     }

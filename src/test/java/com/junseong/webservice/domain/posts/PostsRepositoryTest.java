@@ -52,6 +52,7 @@ class PostsRepositoryTest {
                 .content("test content")
                 .author("test author")
                 .build());
+
         //when
 //        final List<Posts> byId = postsRepository.findAllById(Collections.singleton(save.getId()));
 //        final Posts posts = byId.get(0);

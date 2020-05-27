@@ -19,7 +19,13 @@ notifications:
   email:
     recipients:
       - junseongday@gmail.com
-# 배포설정??????
+
+# 배포설정
+before_deploy:
+  - zip -r spring-webservice *
+  - mkdir -p deploy
+  - mv spring-webservice.zip deploy/spring-webservice.zip
+
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
@@ -29,6 +35,7 @@ deploy:
     skip_cleanup: true
     acl: public_read
     wait-until-deployed: true
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
     on:
       repo: junseongday/spring-webservice #Github 주소
       branch: master
